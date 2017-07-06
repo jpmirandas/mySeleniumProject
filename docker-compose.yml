@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  mvn:
+    entrypoint: mvn
+    image: maven:alpine
+    volumes:
+      - ${PWD}:/usr/src/app
+      - .m2:${HOME}/.m2
+    working_dir: /usr/src/app
