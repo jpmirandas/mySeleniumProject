@@ -9,11 +9,11 @@ public class PropertyReader {
 
 	public static String getProperty(String propertyName) {
 		Properties property = new Properties();
-		
+
 		try {
 			property.load(new FileInputStream("./properties/selenium.properties"));
 		} catch (FileNotFoundException e) {
-			System.err.println("The file selenium.properties was not found!");			
+			System.err.println("The file selenium.properties was not found!");
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.err.println("IO problem when trying to read the selenium.properties file!");

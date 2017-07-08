@@ -2,37 +2,35 @@ package pageObjects;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-
-import util.FactoryWebDriver;
-import util.PropertyReader;
+import util.*;
 
 public class BasePage {
 	private WebDriver webdriver;
-	
-	protected BasePage(){
+
+	protected BasePage() {
 		this.webdriver = FactoryWebDriver.getWebDriver();
 	}
-	
-	public WebDriver getWebDriver(){
+
+	public WebDriver getWebDriver() {
 		return this.webdriver;
 	}
-	
-	public void waitForPageLoad(){
+
+	public void waitForPageLoad() {
 		JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
 		js.executeScript("return jQuery.active == 0");
 	}
-	
-	public void close(){
+
+	public void close() {
 		this.webdriver.close();
 	}
-	
+
 	public void open(String page) {
-		String baseUrl = PropertyReader.getProperty("base.url");
+		String baseUrl = PropertyReader.getProperty(PropertyOptions.BASE_URL);
 		getWebDriver().get(baseUrl + page);
 		waitForPageLoad();
 	}
-	
-	public String getTitle(){
+
+	public String getTitle() {
 		return getWebDriver().getTitle();
 	}
 }

@@ -8,21 +8,24 @@ import org.openqa.selenium.safari.SafariDriver;
 public class FactoryWebDriver {
 
 	static WebDriver webdriver;
+	final static String SAFARI = "safari";
+	final static String FIREFOX = "firefox";
+	final static String PHANTOMJS = "phantomjs";
 
 	public static WebDriver getWebDriver() {
 
-		String browserUT = PropertyReader.getProperty("browser.name");
+		String browserUT = PropertyReader.getProperty(PropertyOptions.BROWSER_NAME);
 
 		if (webdriver == null) {
 
 			switch (browserUT) {
-			case "safari":
+			case SAFARI:
 				webdriver = new SafariDriver();
 				break;
-			case "firefox":
+			case FIREFOX:
 				webdriver = new FirefoxDriver();
 				break;
-			case "phantomjs":
+			case PHANTOMJS:
 				webdriver = new PhantomJSDriver();
 				break;
 			default:
