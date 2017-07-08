@@ -3,13 +3,14 @@ package pageObjects;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+import util.FactoryWebDriver;
 import util.PropertyReader;
 
 public class BasePage {
 	private WebDriver webdriver;
 	
-	protected BasePage(WebDriver webdriver){
-		this.webdriver = webdriver;
+	protected BasePage(){
+		this.webdriver = FactoryWebDriver.getWebDriver();
 	}
 	
 	public WebDriver getWebDriver(){
@@ -29,5 +30,9 @@ public class BasePage {
 		String baseUrl = PropertyReader.getProperty("base.url");
 		getWebDriver().get(baseUrl + page);
 		waitForPageLoad();
+	}
+	
+	public String getTitle(){
+		return getWebDriver().getTitle();
 	}
 }
